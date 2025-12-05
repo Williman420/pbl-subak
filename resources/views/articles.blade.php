@@ -19,11 +19,11 @@
     </section>
 
 
-    <section class="mx-auto mt-10 mb-10 px-10 ">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 overflow-x-auto pb-2 ">
+    <section class="mx-auto mt-10 mb-10 px-20 ">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10 overflow-x-auto pb-2 ">
             {{-- article card --}}
             @foreach(range(1,6) as $a)
-            <article class="min-w-[150px] md:max-w-[400px] bg-white rounded-xl shadow-xl overflow-hidden ">
+            <article class="min-w-[150px] md:max-w-[400px] bg-white rounded-xl shadow-md overflow-hidden ">
                 <div class="h-50 rounded-tl-lg rounded-tr-lg overflow-hidden">
                     <img src="/assets/loginBG.svg " alt="subak terraces" class="w-full h-full object-cover" />
                 </div>

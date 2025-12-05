@@ -56,6 +56,16 @@ Route::get('/aboutSubak', function () {
     return view('about');
 });
 
+
+route::get('/experience', function () {
+    return view('experience');
+});
 Route::get('/articles',  function () {
     return view('articles');
+});
+Route::get('/booking_list',  function () {
+    return view('booking_list');
+});
+Route::get('/experience_details',  function () {
+    return view('experience_details');
 });

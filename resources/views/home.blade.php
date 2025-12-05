@@ -31,7 +31,7 @@
         <div class="mt-30 ">
             <div class="flex flex-row justify-between mb-5">
                 <h2 class="font-semibold text-base md:text-xl mb-4">Available Planting Sessions</h2>
-                <a href="#" class="mt-3 text-sm md:text-sm text-gray-600">See more</a>
+                <a href="/experience" class="mt-3 text-sm md:text-sm text-gray-600">See more</a>
 
             </div>
 
@@ -89,10 +89,9 @@
     </section>
 
 
+    <footer>
+        <x-footer></x-footer>
+    </footer>
+
+
 </body>
-
-<footer>
-    <x-footer></x-footer>
-</footer>
-
-</html>

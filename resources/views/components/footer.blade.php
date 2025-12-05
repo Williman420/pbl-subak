@@ -1,4 +1,4 @@
-<div>
+<div class="">
     <!-- Waste no more time arguing what a good man should be, be one. - Marcus Aurelius -->
     <div class="bg-[#f4f1d8] border-t mt-2">
         <div class="max-w-6xl mx-auto px-6 py-8 grid grid-cols-1 md:grid-cols-4 gap-6">
