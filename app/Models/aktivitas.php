@@ -16,8 +16,11 @@ class aktivitas extends Model
     protected $fillable = [
         'nama_aktivitas',
         'deskripsi',
+        'slot',
         'harga',
         'gambar_aktivitas',
+        'start_date',
+        'end_date',
         'status_ketersediaan',
     ];
 }

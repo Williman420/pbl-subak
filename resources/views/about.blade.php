@@ -66,13 +66,15 @@
                 </div>
                 <div class="flex flex-col">
                     <iframe class="w-100 h-60 rounded-xl" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.8162716716556!2d115.21396410000001!3d-8.6136311!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd23f1f40bef909%3A0x4c4bc184c8e647c6!2sEkowisata%20Subak%20Sembung%2C%20Peguyangan!5e0!3m2!1sid!2sid!4v1764311792720!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    <button type="Copy to Clipboard"
+                    <a href="https://maps.app.goo.gl/fjd6NPnVFqCqZxBp7">
+                        <button type="Copy to Clipboard"
                         class="w-full p-4 mt-4 bg-primary text-white py-2 rounded-3xl hover:bg-[#0E5B11] transition items-center">
                         <div class="flex flex-row justify-around items-center">
                             <p>Get Direction</p>
                             <img src="/assets/icons/mdi_location.png" alt="" class=" w-10 h-10">
                         </div>
                     </button>
+                    </a>
                 </div>
             </div>
         </div>

@@ -8,7 +8,7 @@
     @vite('resources/css/app.css')
 </head>
 
-<body>
+<body class="flex flex-col min-h-screen">
     <x-nav-bar></x-nav-bar>
 
     <section>
@@ -19,19 +19,24 @@
     </section>
 
 
-    <section class="mx-auto mt-10 mb-10 px-20 ">
+    <section class="mx-auto mt-10 mb-10 px-20 grow ">
         <div class="grid place-items-center mx-auto grid-cols-1 md:grid-cols-5 gap-2 overflow-x-auto pb-2">
-            @foreach(range(1,6) as $a)
-            <div class="min-w-[250px] md:max-w-[300px] snap-start bg-white rounded-xl shadow-sm overflow-hidden mb-4">
+            @foreach($experiences as $i)
+            <div class="min-w-[200px] md:min-w-[250px] snap-start bg-white rounded-xl shadow-sm overflow-hidden ">
                 <div class="h-50 md:h-60 overflow-hidden">
-                    <img src="/assets/planting.png" alt="rice paddy" class="w-full h-full object-cover" />
+                    <img src="{{ $i->gambar_aktivitas }}" alt="rice paddy" class="w-full h-full object-cover" />
                 </div>
                 <div class="p-3">
-                    <h3 class="text-sm font-medium">Rice Paddy Planting</h3>
-                    <p class="text-xs text-gray-500 mt-1">10 spots left</p>
-                    <p class="text-xs text-gray-500 mt-1">10 - 23 Oct 2025</p>
+                    <div class=" flex flex-row justify-between">
+                        <h3 class="text-sm font-medium">{{ $i->nama_aktivitas }}</h3>
+                        <p class="text-xs mt-1 
+                             {{ $i->slot < 15 ? 'text-orange-500' : 'text-gray-500' }}">
+                            {{ $i->slot }} Slots left
+                        </p>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">{{ date('d', strtotime($i->start_date))}} - {{date('d F Y', strtotime($i->end_date))}}</p>
                     <div class="mt-3 flex items-center justify-between">
-                        <span class="text-xs text-gray-600">Available</span>
+                        <span class="text-xs text-gray-600"> {{ $i->status_ketersediaan}}</span>
                         <button class="text-xs px-2 py-1 border rounded text-[#0b6abf]">Book</button>
                     </div>
                 </div>
@@ -39,15 +44,10 @@
             @endforeach
         </div>
     </section>
-
-
-
-    <footer>
-        <x-footer></x-footer>
-    </footer>
-
-
 </body>
+<footer>
+    <x-footer></x-footer>
+</footer>
 
 
 </html>

@@ -8,14 +8,13 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="min-h-screen text-gray-800">
+<body class="min-h-screen text-gray-800 flex-col">
     <header class="bg-white ml-10 mr-10">
         <x-nav-bar>
-
         </x-nav-bar>
     </header>
 
-    <section class="px-6 pb-10 mx-0 md:mx-10">
+    <section class="px-6 pb-10 mx-0 md:mx-10 grow">
         <div class="mt-4 rounded-xl overflow-hidden">
             <img src="/assets/sawah_hero.png" alt="Subak rice terraces hero" class="w-full h-full md:h-100 object-cover" />
         </div>
@@ -37,17 +36,20 @@
 
             <div class="flex gap-5 overflow-x-auto pb-2 snap-x snap-mandatory">
                 {{-- session card - replicate or loop with blade --}}
-                @foreach(range(1,5) as $i)
+
+                @foreach($experiences as $i)
                 <div class="min-w-[200px] md:min-w-[250px] snap-start bg-white rounded-xl shadow-sm overflow-hidden ">
                     <div class="h-50 md:h-60 overflow-hidden">
-                        <img src="/assets/planting.png" alt="rice paddy" class="w-full h-full object-cover" />
+                        <img src="{{ $i->gambar_aktivitas }}" alt="rice paddy" class="w-full h-full object-cover" />
                     </div>
                     <div class="p-3">
-                        <h3 class="text-sm font-medium">Rice Paddy Planting</h3>
-                        <p class="text-xs text-gray-500 mt-1">10 spots left</p>
-                        <p class="text-xs text-gray-500 mt-1">10 - 23 Oct 2025</p>
+                        <div class=" flex flex-row justify-between">
+                            <h3 class="text-sm font-medium">{{ $i->nama_aktivitas }}</h3>
+                            <p class="text-xs text-gray-500 mt-1">{{ $i->slot}} slots left</p>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">{{ date('d', strtotime($i->start_date))}} - {{date('d F Y', strtotime($i->end_date))}}</p>
                         <div class="mt-3 flex items-center justify-between">
-                            <span class="text-xs text-gray-600">Available</span>
+                            <span class="text-xs text-gray-600"> {{ $i->status_ketersediaan }}</span>
                             <button class="text-xs px-2 py-1 border rounded text-[#0b6abf]">Book</button>
                         </div>
                     </div>
@@ -66,17 +68,17 @@
 
             <div class="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory">
                 {{-- article card --}}
-                @foreach(range(1,5) as $a)
-                <article class="min-w-[300px] bg-white rounded-xl shadow-sm overflow-hidden snap-start ">
+                @foreach($artikels as $a)
+                <article class="min-w-[150px] md:max-w-[400px]  bg-white rounded-xl shadow-sm overflow-hidden snap-start ">
                     <div class="h-50 rounded-tl-lg rounded-tr-lg overflow-hidden">
-                        <img src="/assets/loginBG.svg " alt="subak terraces" class="w-full h-full object-cover" />
+                        <img src="{{ $a->gambar_aktivitas }} " alt="subak terraces" class="w-full h-full object-cover" />
                     </div>
 
                     <div class="mt-3 p-3">
-                        <time class="text-xs text-gray-500">November 3, 2025</time>
-                        <h3 class="mt-1 text-sm font-semibold">The History and Significance of Subak in Balinese Culture</h3>
+                        <time class="text-xs text-gray-500"> {{ date('d F Y', strtotime($a->tanggal_pembuatan)) }}</time>
+                        <h3 class="mt-1 text-sm font-semibold">{{ $a->judul }}</h3>
                         <p class="text-xs text-gray-600 mt-2 line-clamp-3">
-                            Explore the ancient roots of the Subak irrigation system and how it has shaped Balinese civilization for over a thousand years. Learn about its UNESCO World Heritage recognition and cultural importance.
+                            {{ Str::limit($a->isi_artikel, 100) }}
                         </p>
                         <div class="mt-3 flex justify-between items-center">
                             <a href="#" class="text-xs text-[#0b6abf] font-medium">Read more</a>
@@ -88,10 +90,7 @@
         </div>
     </section>
 
-
-    <footer>
-        <x-footer></x-footer>
-    </footer>
-
-
 </body>
+<footer>
+    <x-footer></x-footer>
+</footer>

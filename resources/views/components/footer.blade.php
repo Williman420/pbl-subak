@@ -2,9 +2,14 @@
     <!-- Waste no more time arguing what a good man should be, be one. - Marcus Aurelius -->
     <div class="bg-[#f4f1d8] border-t mt-2">
         <div class="max-w-6xl mx-auto px-6 py-8 grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div class="flex flex-col gap-3">
-                <img src="/mnt/data/placeholder-logo.png" alt="logo" class="w-14 h-14 rounded-full" />
-                <div class="text-sm font-semibold">Subak Sembung Experience</div>
+            <div class="flex flex-col h-full items-center justify-center">
+
+                <div class="flex flex-row gap-3 items-center">
+                    <img class="w-20 h-20 rounded-full object-cover" src="\assets\icons\logo.png" alt="logo">
+
+                    <div class="text-md font-semibold">Subak Sembung Experience</div>
+                </div>
+
             </div>
 
             <div class="text-sm">
