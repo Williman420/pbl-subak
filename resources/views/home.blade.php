@@ -16,7 +16,7 @@
 
     <section class="px-6 pb-10 mx-0 md:mx-10 grow">
         <div class="mt-4 rounded-xl overflow-hidden">
-            <img src="/assets/sawah_hero.png" alt="Subak rice terraces hero" class="w-full h-full md:h-100 object-cover" />
+            <img src="/assets/sawah_hero.png" alt="Subak rice terraces hero" class="w-full h-full md:h-100 object-cover" loading="lazy" />
         </div>
 
         <div class="text-center mt-10 px-4 md:px-24">
@@ -40,11 +40,11 @@
                 @foreach($experiences as $i)
                 <div class="min-w-[200px] md:min-w-[250px] snap-start bg-white rounded-xl shadow-sm overflow-hidden ">
                     <div class="h-50 md:h-60 overflow-hidden">
-                        <img src="{{ $i->gambar_aktivitas }}" alt="rice paddy" class="w-full h-full object-cover" />
+                        <img src="{{ asset("storage/".$i->gambar_aktivitas) }}" alt="rice paddy" class="w-full h-full object-cover" />
                     </div>
                     <div class="p-3">
                         <div class=" flex flex-row justify-between">
-                            <h3 class="text-sm font-medium">{{ $i->nama_aktivitas }}</h3>
+                            <h3 class="text-sm font-medium">{{$i->nama_aktivitas}}</h3>
                             <p class="text-xs text-gray-500 mt-1">{{ $i->slot}} slots left</p>
                         </div>
                         <p class="text-xs text-gray-500 mt-1">{{ date('d', strtotime($i->start_date))}} - {{date('d F Y', strtotime($i->end_date))}}</p>

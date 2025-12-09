@@ -11,7 +11,7 @@ class PengunjungController extends Controller
     public function index()
     {
         $pengunjung = Pengunjung::all();
-        return view('home', compact('pengunjung'));
+        return view('home.homeData', compact('pengunjung'));
     }
     public function create()
     {
@@ -86,7 +86,7 @@ class PengunjungController extends Controller
 
         session(['pengunjung_id' => $pengunjung->id_pengunjung, 'pengunjung_nama' => $pengunjung->nama_lengkap]);
 
-        return redirect()->route('home')->with('success', 'Welcome back, ' . $pengunjung->nama_lengkap . '!');
+        return redirect()->route('home.homeData')->with('success', 'Welcome back, ' . $pengunjung->nama_lengkap . '!');
     }
 
 
