@@ -20,4 +20,6 @@ class Artikel extends Model
         'modified_date',
         'isi_artikel'
     ];
+
+    
 }

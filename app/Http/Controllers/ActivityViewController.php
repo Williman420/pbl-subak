@@ -15,4 +15,9 @@ class ActivityViewController extends Controller
 
         return view('experience', compact('experiences'));
     }
+
+    public function details(Aktivitas $experience)
+    {
+        return view('experience_details', compact('experience'));
+    }
 }

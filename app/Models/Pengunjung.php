@@ -2,16 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 
-class Pengunjung extends Model
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
+class Pengunjung extends Authenticatable
 {
 
     protected $table = 'pengunjung';
     protected $primaryKey = 'id_pengunjung';
     public $incrementing = true;
     protected $keyType = 'int';
-    public $timestamps = false; // 👈 Disable created_at and updated_at
+    public $timestamps = false;
 
     protected $fillable = [
         'username',

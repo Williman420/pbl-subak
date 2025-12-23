@@ -19,7 +19,23 @@
                     <circle cx="11" cy="7" r="4"></circle>
                     <path d="M21 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path>
                 </svg>
-                Ryan
+                @auth
+                <div class="flex items-center gap-2">
+                    <span class="text-sm text-gray-700">
+                        Hi, {{ Auth::pengunjung()->username }}
+                    </span>
+
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="text-red-600">
+                            Logout
+                        </button>
+                    </form>
+                </div>
+                @else
+                <a href="{{ route('login') }}">Login</a>
+                <a href="{{ route('register') }}">Register</a>
+                @endauth
             </button>
             <button class="md:hidden p-2 rounded border">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" stroke="currentColor">

@@ -27,6 +27,7 @@
         </div>
 
         {{-- Available Planting Sessions --}}
+
         <div class="mt-30 ">
             <div class="flex flex-row justify-between mb-5">
                 <h2 class="font-semibold text-base md:text-xl mb-4">Available Planting Sessions</h2>
@@ -38,25 +39,29 @@
                 {{-- session card - replicate or loop with blade --}}
 
                 @foreach($experiences as $i)
-                <div class="min-w-[200px] md:min-w-[250px] snap-start bg-white rounded-xl shadow-sm overflow-hidden ">
-                    <div class="h-50 md:h-60 overflow-hidden">
-                        <img src="{{ asset("storage/".$i->gambar_aktivitas) }}" alt="rice paddy" class="w-full h-full object-cover" />
-                    </div>
-                    <div class="p-3">
-                        <div class=" flex flex-row justify-between">
-                            <h3 class="text-sm font-medium">{{$i->nama_aktivitas}}</h3>
-                            <p class="text-xs text-gray-500 mt-1">{{ $i->slot}} slots left</p>
+
+                <a href="{{  route('experience.details', $i->id_aktivitas)  }}">
+                    <div class="min-w-[200px] md:min-w-[250px] snap-start bg-white rounded-xl shadow-sm overflow-hidden ">
+                        <div class="h-50 md:h-60 overflow-hidden">
+                            <img src="{{ asset("storage/".$i->gambar_aktivitas) }}" alt="rice paddy" class="w-full h-full object-cover" />
                         </div>
-                        <p class="text-xs text-gray-500 mt-1">{{ date('d', strtotime($i->start_date))}} - {{date('d F Y', strtotime($i->end_date))}}</p>
-                        <div class="mt-3 flex items-center justify-between">
-                            <span class="text-xs text-gray-600"> {{ $i->status_ketersediaan }}</span>
-                            <button class="text-xs px-2 py-1 border rounded text-[#0b6abf]">Book</button>
+                        <div class="p-3">
+                            <div class=" flex flex-row justify-between">
+                                <h3 class="text-sm font-medium">{{$i->nama_aktivitas}}</h3>
+                                <p class="text-xs text-gray-500 mt-1">{{ $i->slot}} slots left</p>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">{{ date('d', strtotime($i->start_date))}} - {{date('d F Y', strtotime($i->end_date))}}</p>
+                            <div class="mt-3 flex items-center justify-between">
+                                <span class="text-xs text-gray-600"> {{ $i->status_ketersediaan }}</span>
+                                <button class="text-xs px-2 py-1 border rounded text-[#0b6abf]">Book</button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
                 @endforeach
             </div>
         </div>
+
 
         {{-- ARTICLES --}}
         <div class="mt-10 pb-8">
@@ -71,7 +76,7 @@
                 @foreach($artikels as $a)
                 <article class="min-w-[150px] md:max-w-[400px]  bg-white rounded-xl shadow-sm overflow-hidden snap-start ">
                     <div class="h-50 rounded-tl-lg rounded-tr-lg overflow-hidden">
-                        <img src="{{ $a->gambar_aktivitas }} " alt="subak terraces" class="w-full h-full object-cover" />
+                        <img src="{{  asset("storage/".$a->gambar_aktivitas) }} " alt="subak terraces" class="w-full h-full object-cover" />
                     </div>
 
                     <div class="mt-3 p-3">

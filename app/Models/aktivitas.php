@@ -23,4 +23,9 @@ class aktivitas extends Model
         'end_date',
         'status_ketersediaan',
     ];
+
+    public function getRouteKeyName()
+    {
+        return 'id_aktivitas';
+    }
 }

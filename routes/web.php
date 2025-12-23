@@ -1,16 +1,17 @@
 <?php
 
 use App\Http\Controllers\ActivityViewController;
-use App\Http\Controllers\artikel_controller;
+
 use App\Http\Controllers\NewRegisteredUserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PengunjungController;
-use App\Http\Controllers\ArtikelController; // ✅ ADD THIS
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\ArtikelViewController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\HomeViewController;
+
+
 
 // REGISTER
 Route::post('register', function () {
@@ -24,10 +25,10 @@ Route::post('register_success', function () {
     return view('register_success');
 });
 
-// DASHBOARD
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// // DASHBOARD
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 // PROFILE
 Route::middleware('auth')->group(function () {
@@ -38,7 +39,6 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
-// PENGUNJUNG
 Route::get('/pengunjung', [PengunjungController::class, 'index'])->name('pengunjung.index');
 Route::get('/pengunjung/create', [PengunjungController::class, 'create'])->name('pengunjung.create');
 Route::post('/pengunjung', [PengunjungController::class, 'store'])->name('pengunjung.store');
@@ -50,19 +50,23 @@ Route::post('/login', [PengunjungController::class, 'login'])->name('login.submi
 
 
 
+
 // STATIC PAGES
 Route::get('/aboutSubak', fn() => view('about'));
-Route::get('/experience', fn() => view('experience'));
+// Route::get('/experience', fn() => view('experience'));
 Route::get('/articles', fn() => view('articles'));
 Route::get('/booking_list', fn() => view('booking_list'));
-Route::get('/experience_details', fn() => view('experience_details'));
 
 
 
-
-use App\Http\Controllers\ArtikelViewController;
-use App\Http\Controllers\HomeViewController;
 
 Route::get('/articles', [ArtikelViewController::class, 'index'])->name('artikel.index');
-Route::get('/home', [HomeViewController::class, 'homeData'])->name('home.homeData');
-Route::get('/experience', [ActivityViewController::class, 'activityData'])->name('home.activityData');
+Route::get('/', [HomeViewController::class, 'homeData'])->name('home.homeData');
+Route::get('/experience', [ActivityViewController::class, 'activityData'])->name('activity.activityData');
+Route::get(
+    '/experience_details/{experience}',
+    [ActivityViewController::class, 'details']
+)->name('experience.details');
+
+Route::get('/booking/create/{experience}', [BookingController::class, 'formBooking'])->name('booking.formBooking');
+Route::post('/booking/create/submit', [BookingController::class, 'create'])->name('booking.create');
