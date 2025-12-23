@@ -6,6 +6,7 @@ use App\Http\Controllers\NewRegisteredUserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PengunjungController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Aktivitas;
 
 use App\Http\Controllers\ArtikelViewController;
 use App\Http\Controllers\BookingController;
@@ -51,6 +52,7 @@ Route::post('/login', [PengunjungController::class, 'login'])->name('login.submi
 
 
 
+
 // STATIC PAGES
 Route::get('/aboutSubak', fn() => view('about'));
 // Route::get('/experience', fn() => view('experience'));
@@ -68,5 +70,6 @@ Route::get(
     [ActivityViewController::class, 'details']
 )->name('experience.details');
 
-Route::get('/booking/create/{experience}', [BookingController::class, 'formBooking'])->name('booking.formBooking');
-Route::post('/booking/create/submit', [BookingController::class, 'create'])->name('booking.create');
+Route::get('/booking/create/{aktivitas}', [BookingController::class, 'formBooking'])
+    ->middleware('auth:web')
+    ->name('booking.create');

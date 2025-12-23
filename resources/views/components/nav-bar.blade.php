@@ -22,7 +22,7 @@
                 @auth
                 <div class="flex items-center gap-2">
                     <span class="text-sm text-gray-700">
-                        Hi, {{ Auth::pengunjung()->username }}
+                        Hi, {{ Auth::user()->username }}
                     </span>
 
                     <form method="POST" action="{{ route('logout') }}">

@@ -11,7 +11,7 @@ class aktivitas extends Model
     protected $primaryKey = 'id_aktivitas';
     public $incrementing = true;
     protected $keyType = 'int';
-    public $timestamps = false; // 👈 Disable created_at and updated_at
+    public $timestamps = false;
 
     protected $fillable = [
         'nama_aktivitas',
