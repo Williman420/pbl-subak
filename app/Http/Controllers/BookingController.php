@@ -10,6 +10,8 @@ class BookingController extends Controller
     {
         return view('BookingPage', [
             'aktivitas' => $aktivitas,
+          
+
         ]);
     }
 }

@@ -5,7 +5,7 @@
         <div class="flex items-center gap-4">
             <img src="\assets\icons\logo.png" alt="logo" class="w-15 h-15 rounded-full object-cover" />
             <div class="hidden md:flex items-center gap-6 text-lg">
-                <a href="/home" class="text-[#0b6abf] font-semibold">Home</a>
+                <a href="/" class="text-[#0b6abf] font-semibold">Home</a>
                 <a href="/aboutSubak" class="hover:text-[#0b6abf]">About</a>
                 <a href="/experience" class="hover:text-[#0b6abf]">Experiences List</a>
                 <a href="#" class="hover:text-[#0b6abf]">My Bookings</a>

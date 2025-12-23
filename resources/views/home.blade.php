@@ -41,14 +41,17 @@
                 @foreach($experiences as $i)
 
                 <a href="{{  route('experience.details', $i->id_aktivitas)  }}">
-                    <div class="min-w-[200px] md:min-w-[250px] snap-start bg-white rounded-xl shadow-sm overflow-hidden ">
+                    <div class="min-w-[200px] max-w-[250px] snap-start bg-white rounded-xl shadow-sm overflow-hidden ">
                         <div class="h-50 md:h-60 overflow-hidden">
-                            <img src="{{ asset("storage/".$i->gambar_aktivitas) }}" alt="rice paddy" class="w-full h-full object-cover" />
+                            <img src="{{ asset("storage/".$i->gambar_aktivitas) }}" alt="{{ $i->nama_aktivitas }}" class="w-full h-full object-cover" />
                         </div>
                         <div class="p-3">
                             <div class=" flex flex-row justify-between">
                                 <h3 class="text-sm font-medium">{{$i->nama_aktivitas}}</h3>
-                                <p class="text-xs text-gray-500 mt-1">{{ $i->slot}} slots left</p>
+                                <p class="text-xs mt-1 
+                             {{ $i->slot < 5 ? 'text-orange-500' : 'text-gray-500' }}">
+                                    {{ $i->slot }} Slots left
+                                </p>
                             </div>
                             <p class="text-xs text-gray-500 mt-1">{{ date('d', strtotime($i->start_date))}} - {{date('d F Y', strtotime($i->end_date))}}</p>
                             <div class="mt-3 flex items-center justify-between">
@@ -74,9 +77,9 @@
             <div class="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory">
                 {{-- article card --}}
                 @foreach($artikels as $a)
-                <article class="min-w-[150px] md:max-w-[400px]  bg-white rounded-xl shadow-sm overflow-hidden snap-start ">
+                <article class="min-w-[150px] md:max-w-[300px]  bg-white rounded-xl shadow-sm overflow-hidden snap-start ">
                     <div class="h-50 rounded-tl-lg rounded-tr-lg overflow-hidden">
-                        <img src="{{  asset("storage/".$a->gambar_aktivitas) }} " alt="subak terraces" class="w-full h-full object-cover" />
+                        <img src="{{  asset("storage/".$a->gambar_aktivitas) }} " alt="{{ $a->judul }}" class="w-full h-full object-cover" />
                     </div>
 
                     <div class="mt-3 p-3">
