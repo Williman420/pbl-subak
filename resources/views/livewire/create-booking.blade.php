@@ -28,7 +28,9 @@
             Price: Rp {{ number_format($aktivitas->harga) }} <br>
         </div>
 
-        <button class="w-full bg-primary text-white py-2 rounded-xl" wire:click="showModal = true">
+        <button wire:click="submit"
+            {{ $aktivitas->slot < $jumlah_peserta ? 'disabled' : '' }}
+            class="w-full bg-primary text-white py-2 rounded-xl disabled:bg-gray-400 disabled:cursor-not-allowed" wire:click="showModal = true">
             Book
         </button>
 
@@ -75,10 +77,13 @@
             </div>
             <p class="text-sm text-gray-500">Please verify your payment via WhatsApp by sending a screenshot of your Payment </p>
 
-            <button class="w-full mt-6 bg-primary text-white py-3 rounded-full font-semibold">
-                Proceed to WhatsApp
-            </button>
 
+
+            <a aria-label="Chat on WhatsApp" href="https://wa.me/087763085571">
+                <button class="w-full mt-6 bg-primary text-white py-3 rounded-full font-semibold">
+                    Proceed to WhatsApp
+                </button>
+            </a>
         </div>
     </div>
     @endif

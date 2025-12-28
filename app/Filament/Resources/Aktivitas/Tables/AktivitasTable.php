@@ -17,8 +17,9 @@ class AktivitasTable
                 TextColumn::make('id_aktivitas'),
                 TextColumn::make('nama_aktivitas'),
                 TextColumn::make('deskripsi')
-                ->limit(80),
+                    ->limit(80),
 
+                TextColumn::make('slot'),
                 TextColumn::make('harga'),
                 TextColumn::make('start_date'),
                 TextColumn::make('end_date'),
