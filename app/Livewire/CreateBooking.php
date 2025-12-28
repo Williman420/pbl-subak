@@ -14,6 +14,9 @@ class CreateBooking extends Component
     public $tanggal_booking;
     public $jumlah_peserta = 1;
     public $total_harga = 0;
+    public $timestamps = true;
+    public $showModal = false;
+    public $selectedBooking = null;
 
     public function mount(Aktivitas $aktivitas)
     {
@@ -29,7 +32,7 @@ class CreateBooking extends Component
     public function submit()
     {
         $user = Auth::user();
-        Booking::create([
+        $booking = Booking::create(attributes: [
             'id_aktivitas' => $this->aktivitas->id_aktivitas,
             'id_pengunjung' => $user->id_pengunjung,
             'tanggal_booking' => $this->tanggal_booking,
@@ -37,8 +40,16 @@ class CreateBooking extends Component
             'status_booking' => 'pending',
             'total_harga' => $this->total_harga,
         ]);
+        $this->selectedBooking = $booking;
+        $this->showModal = true;
+        session()->flash('success', 'Booking saved, Continue to WA to confirm verify your payment!');
+    }
 
-        session()->flash('success', 'Booking saved');
+
+
+    public function closeModal()
+    {
+        $this->reset(['showModal', 'selectedBooking']);
     }
 
     public function render()

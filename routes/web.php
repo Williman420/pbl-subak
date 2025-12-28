@@ -73,3 +73,8 @@ Route::get(
 Route::get('/booking/create/{aktivitas}', [BookingController::class, 'formBooking'])
     ->middleware('auth:web')
     ->name('booking.create');
+
+
+Route::get('/myBookingPage', [BookingController::class, 'showMyBooking'])
+    ->middleware('auth:web')
+    ->name('myBooking.showMyBooking');

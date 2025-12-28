@@ -10,8 +10,8 @@ class Booking extends Model
 
     protected $primaryKey = 'id_booking'; // primary key name
 
-    public $timestamps = false; // because your table has no created_at / updated_at
-
+    public $timestamps = true;
+    const UPDATED_AT = null;
     protected $fillable = [
         'id_aktivitas',
         'id_pengunjung',

@@ -8,7 +8,7 @@
                 <a href="/" class="text-[#0b6abf] font-semibold">Home</a>
                 <a href="/aboutSubak" class="hover:text-[#0b6abf]">About</a>
                 <a href="/experience" class="hover:text-[#0b6abf]">Experiences List</a>
-                <a href="#" class="hover:text-[#0b6abf]">My Bookings</a>
+                <a href="/myBookingPage" class="hover:text-[#0b6abf]">My Bookings</a>
                 <a href="/articles" class="hover:text-[#0b6abf]">Articles</a>
             </div>
         </div>

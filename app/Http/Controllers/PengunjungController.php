@@ -9,13 +9,11 @@ use Illuminate\Support\Facades\Hash;
 
 class PengunjungController extends Controller
 {
-
     public function index()
     {
         $pengunjung = Pengunjung::all();
         return view('home.homeData', compact('pengunjung'));
     }
-
 
     public function create()
     {
@@ -59,15 +57,16 @@ class PengunjungController extends Controller
             'password' => 'required',
         ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-
-            return redirect()->intended(route('home.homeData'));
+        if (!Auth::attempt($credentials)) {
+            return back()
+                ->withErrors([
+                    'email' => 'Email atau password salah.',
+                ])
+                ->withInput();
         }
 
-        return back()->withErrors([
-            'email' => 'Email atau password salah.',
-        ]);
+        $request->session()->regenerate();
+        return redirect()->intended(route('home.homeData'));
     }
 
     public function logout(Request $request)
@@ -78,21 +77,5 @@ class PengunjungController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->route('login');
-    }
-
-    public function show($id)
-    {
-        $pengunjung = Pengunjung::findOrFail($id);
-        return view('pengunjung.show', compact('pengunjung'));
-    }
-
-    public function destroy($id)
-    {
-        $pengunjung = Pengunjung::findOrFail($id);
-        $pengunjung->delete();
-
-        return redirect()
-            ->route('pengunjung.index')
-            ->with('success', 'Data berhasil dihapus.');
     }
 }

@@ -8,9 +8,20 @@
     @livewireStyles
 </head>
 
-<body class="bg-gray-100 p-10">
+<body class="min-h-screen flex flex-col">
 
-    <livewire:create-booking :aktivitas="$aktivitas" />
+    <header class="bg-white mx-10">
+        <x-nav-bar />
+    </header>
+
+    <!-- Main content fills empty space -->
+    <main class="flex-1 flex items-center justify-center">
+        <livewire:create-booking :aktivitas="$aktivitas" />
+    </main>
+
+    <footer>
+        <x-footer />
+    </footer>
 
     @livewireScripts
 </body>

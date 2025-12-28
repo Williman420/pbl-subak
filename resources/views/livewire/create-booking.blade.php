@@ -1,46 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
+<div class="w-full max-w-md mx-auto p-6 bg-white rounded-xl shadow border border-gray-600">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    <h2 class="text-lg font-bold mb-3">
+        Booking: {{ $aktivitas->nama_aktivitas }}
+    </h2>
 
-<body>
-    <div class="max-w-md mx-auto bg-white p-6 rounded shadow">
+    @if (session()->has('success'))
+    <div class="bg-green-100 text-primary p-2 mb-3 rounded">
+        {{ session(key: 'success') }}
+    </div>
+    @endif
 
-        <h2 class="text-lg font-bold mb-3">
-            Booking: {{ $aktivitas->nama_aktivitas }}
-        </h2>
+    <form wire:submit.prevent="submit" class="space-y-4">
+        <p class="text-sm text-gray-600 mt-1">
+            Date
+        </p>
+        <input type="date" required
+            wire:model="tanggal_booking"
+            class="w-full border p-2 rounded">
+        <p class="text-sm text-gray-600 mt-1">
+            Number of Participants
+        </p>
+        <input type="number" min="1"
+            wire:model="jumlah_peserta"
+            class="w-full border p-2 rounded">
 
-        @if (session()->has('success'))
-        <div class="bg-green-100 text-green-700 p-2 mb-3 rounded">
-            {{ session('success') }}
+        <div class="bg-gray-100 p-2 rounded text-black">
+            Price: Rp {{ number_format($aktivitas->harga) }} <br>
         </div>
-        @endif
 
-        <form wire:submit.prevent="submit" class="space-y-4">
+        <button class="w-full bg-primary text-white py-2 rounded-xl" wire:click="showModal = true">
+            Book
+        </button>
 
-            <input type="date" wire:model="tanggal_booking"
-                class="w-full border p-2 rounded">
+    </form>
+    @if ($showModal && $selectedBooking)
+    <div class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+        <div class="bg-white w-full max-w-md rounded-2xl shadow-lg p-6">
 
-            <input type="number" min="1"
-                wire:model="jumlah_peserta"
-                class="w-full border p-2 rounded">
+            <h2 class="text-xl font-bold">Booking Confirmation</h2>
+            <p class="text-sm text-gray-600 mt-1">
+                Review your booking details before proceeding to payment
+            </p>
 
-            <div class="bg-gray-100 p-2 rounded">
-                Harga: Rp {{ number_format($aktivitas->harga) }} <br>
-                Total: Rp {{ number_format($total_harga) }}
+            <div class="mt-5">
+                <p class="text-sm text-gray-600">Experiences</p>
+                <p class="font-semibold">{{ $aktivitas->nama_aktivitas }}</p>
             </div>
 
-            <button class="w-full bg-blue-600 text-white py-2 rounded">
-                Book
+            <div class="flex justify-between mt-5">
+                <div>
+                    <p class="text-sm text-gray-500">Date</p>
+                    <p class="font-semibold">{{ $selectedBooking->tanggal_booking }}</p>
+                </div>
+
+                <div>
+                    <p class="text-sm text-gray-500">Participants</p>
+                    <p class="font-semibold">{{ $selectedBooking->jumlah_peserta }} Person</p>
+                </div>
+            </div>
+
+            <div class="mt-6">
+                <p class="text-sm text-gray-600 mb-2">Guest Information</p>
+                <div class="bg-gray-100 rounded-lg p-3">
+                    <p class="font-semibold text-black">{{ $selectedBooking->pengunjung->nama_lengkap }}</p>
+                    <p class="text-sm text-black">{{ $selectedBooking->pengunjung->email }}</p>
+                </div>
+            </div>
+
+            <div class="mt-6 border-t pt-4">
+                <div class="flex justify-between font-bold bg-green-50 p-3 rounded-lg">
+                    <span>Total Amount</span>
+                    <span>IDR {{ number_format($selectedBooking->total_harga) }}</span>
+                </div>
+            </div>
+            <p class="text-sm text-gray-500">Please verify your payment via WhatsApp by sending a screenshot of your Payment </p>
+
+            <button class="w-full mt-6 bg-primary text-white py-3 rounded-full font-semibold">
+                Proceed to WhatsApp
             </button>
 
-        </form>
+        </div>
     </div>
+    @endif
 
-</body>
 
-</html>
+    <a href="{{ route('experience.details', $aktivitas->id_aktivitas) }}">
+        <button class="w-full bg-primary text-white py-2 rounded-xl mt-5">
+            Back to activity details
+        </button>
+    </a>
+
+
+
+</div>
