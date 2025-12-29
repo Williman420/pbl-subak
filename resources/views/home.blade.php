@@ -77,22 +77,24 @@
             <div class="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory">
                 {{-- article card --}}
                 @foreach($artikels as $a)
-                <article class="min-w-[150px] md:max-w-[300px]  bg-white rounded-xl shadow-sm overflow-hidden snap-start ">
-                    <div class="h-50 rounded-tl-lg rounded-tr-lg overflow-hidden">
-                        <img src="{{  asset("storage/".$a->gambar_aktivitas) }} " alt="{{ $a->judul }}" class="w-full h-full object-cover" />
-                    </div>
+                <a href="{{  route('article.details', $a->id_artikel)  }}">
+                    <div class="min-w-[150px] md:max-w-[400px] flex-wrap bg-white rounded-xl shadow-md overflow-hidden ">
+                        <div class="h-50 rounded-tl-lg rounded-tr-lg overflow-hidden">
+                            <img src="{{ $a->gambar_aktivitas }}" alt="subak terraces" class="w-full h-full object-cover" />
+                        </div>
 
-                    <div class="mt-3 p-3">
-                        <time class="text-xs text-gray-500"> {{ date('d F Y', strtotime($a->tanggal_pembuatan)) }}</time>
-                        <h3 class="mt-1 text-sm font-semibold">{{ $a->judul }}</h3>
-                        <p class="text-xs text-gray-600 mt-2 line-clamp-3">
-                            {{ Str::limit($a->isi_artikel, 100) }}
-                        </p>
-                        <div class="mt-3 flex justify-between items-center">
-                            <a href="#" class="text-xs text-[#0b6abf] font-medium">Read more</a>
+                        <div class="mt-3 p-3">
+                            <time class="text-xs text-gray-500">{{ $a->tanggal_pembuatan }}</time>
+                            <h3 class="mt-1 text-sm font-semibold">{{ $a->judul }}</h3>
+                            <p class="text-xs text-gray-600 mt-2 line-clamp-3">
+                                {{ Str::limit($a->isi_artikel, 100) }}
+                            </p>
+                            <div class="mt-3 flex justify-between items-center text-xs text-primary font-medium">
+                                Read more
+                            </div>
                         </div>
                     </div>
-                </article>
+                </a>
                 @endforeach
             </div>
         </div>

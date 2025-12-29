@@ -60,6 +60,12 @@ Route::get('/articles', fn() => view('articles'));
 Route::get('/booking_list', fn() => view('booking_list'));
 
 
+Route::get(
+    '/articleDetails/{article}',
+    [ArtikelViewController::class, 'details']
+)->name('article.details');
+
+
 
 
 Route::get('/articles', [ArtikelViewController::class, 'index'])->name('artikel.index');

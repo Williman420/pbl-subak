@@ -10,15 +10,13 @@
 
 <body class="min-h-screen flex flex-col">
 
-    <!-- HEADER -->
+
     <header class="bg-white mx-10">
         <x-nav-bar />
     </header>
 
-    <!-- MAIN CONTENT (flex-1 is the key) -->
     <main class="flex-1">
 
-        <!-- PAGE TITLE -->
         <section>
             <div class="w-full h-20 md:h-30 bg-primary text-center p-4">
                 <h1 class="text-2xl md:text-3xl font-bold text-white">
@@ -30,13 +28,12 @@
             </div>
         </section>
 
-        <!-- BOOKING LIST -->
         <section class="mx-auto mt-10 mb-10 px-20">
             <div class="grid place-items-center mx-auto grid-cols-1 gap-2 overflow-x-auto pb-5">
                 @foreach($bookings as $booking)
                 <div class="bg-white border border-gray-300 rounded-3xl p-6 shadow-sm w-full max-w-4xl">
 
-                    <!-- Top Section -->
+
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
 
                         <div>
@@ -71,7 +68,7 @@
 
                     <div class="border-t border-gray-300 my-5"></div>
 
-                    <!-- Bottom Section -->
+
                     <div class="flex flex-col md:flex-row justify-between gap-4">
 
                         <div class="flex gap-12">
@@ -90,7 +87,12 @@
                             </div>
                         </div>
 
-                        <span class="bg-[#bbf786] text-green-900 text-xs font-semibold px-4 py-1.5 rounded-full self-start md:self-end">
+                        <span class=" text-xs font-semibold px-4 py-1.5 rounded-full self-start md:self-end border border-gray-300
+                        @if ( $booking->status_booking == 'pending' ) bg-[#FFE79F] text-[#390909]
+                        @elseif ($booking->status_booking == 'confirmed') bg-[#bbf786] text-[#25301B]
+                        @elseif ($booking->status_booking == 'cancelled') bg-[#FEC1BF] text-[#180D0C]
+                        @endif
+                        ">
                             {{ $booking->status_booking }}
                         </span>
 
@@ -102,7 +104,6 @@
 
     </main>
 
-    <!-- FOOTER -->
     <footer>
         <x-footer />
     </footer>
