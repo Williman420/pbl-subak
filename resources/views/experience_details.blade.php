@@ -80,16 +80,6 @@
         </div>
 
     </section>
-
-
-
-
-
-
-
-
-
-
 </body>
 <footer>
     <x-footer></x-footer>
