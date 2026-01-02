@@ -26,8 +26,6 @@
             </p>
         </div>
 
-        {{-- Available Planting Sessions --}}
-
         <div class="mt-30 ">
             <div class="flex flex-row justify-between mb-5">
                 <h2 class="font-semibold text-base md:text-xl mb-4">Available Planting Sessions</h2>
@@ -36,7 +34,7 @@
             </div>
 
             <div class="flex gap-5 overflow-x-auto pb-2 snap-x snap-mandatory">
-                {{-- session card - replicate or loop with blade --}}
+
 
                 @foreach($experiences as $i)
 
@@ -66,7 +64,6 @@
         </div>
 
 
-        {{-- ARTICLES --}}
         <div class="mt-10 pb-8">
             <div class="flex flex-row justify-between mb-5">
                 <h2 class="font-semibold text-base md:text-xl mb-4">Articles</h2>
@@ -75,12 +72,12 @@
             </div>
 
             <div class="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory">
-                {{-- article card --}}
+
                 @foreach($artikels as $a)
                 <a href="{{  route('article.details', $a->id_artikel)  }}">
                     <div class="min-w-[150px] md:max-w-[400px] flex-wrap bg-white rounded-xl shadow-md overflow-hidden ">
                         <div class="h-50 rounded-tl-lg rounded-tr-lg overflow-hidden">
-                            <img src="{{ $a->gambar_aktivitas }}" alt="subak terraces" class="w-full h-full object-cover" />
+                            <img src="{{ asset("storage/".$a->gambar_aktivitas) }}" alt="subak terraces" class="w-full h-full object-cover" />
                         </div>
 
                         <div class="mt-3 p-3">

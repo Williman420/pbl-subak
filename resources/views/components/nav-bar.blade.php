@@ -10,7 +10,7 @@
     @endphp
 
     <nav class="flex items-center justify-between px-6 py-4">
-        <!-- Left -->
+
         <div class="flex items-center gap-4">
             <img src="/assets/icons/logo.png"
                 alt="logo"
@@ -39,7 +39,6 @@
             </div>
         </div>
 
-        <!-- Right -->
         <div class="flex items-center gap-4">
             <button class="hidden md:inline-flex items-center gap-2 px-3 py-1.5 border rounded-full text-sm">
                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -70,7 +69,7 @@
                 @endauth
             </button>
 
-            <!-- Mobile menu button -->
+
             <button class="md:hidden p-2 rounded border">
                 <svg xmlns="http://www.w3.org/2000/svg"
                     class="h-5 w-5"

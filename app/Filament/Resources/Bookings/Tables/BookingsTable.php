@@ -15,10 +15,20 @@ class BookingsTable
     {
         return $table
             ->columns([
-                textColumn::make('id_booking'),
-                textColumn::make('id_aktivitas'),
-                textColumn::make('id_pengunjung'),
-                textColumn::make('tanggal_booking'),
+                TextColumn::make('id_booking'),
+                TextColumn::make('id_aktivitas'),
+                TextColumn::make('id_pengunjung'),
+                TextColumn::make('tanggal_booking'),
+                TextColumn::make('jumlah_peserta'),
+                TextColumn::make('total_harga'),
+
+                TextColumn::make('jam_mulai')
+                    ->label('Jam Mulai')
+                    ->time('H:i'),
+
+                TextColumn::make('jam_selesai')
+                    ->label('Jam Selesai')
+                    ->time('H:i'),
                 textColumn::make('jumlah_peserta'),
                 SelectColumn::make('status_booking')
                     ->options([

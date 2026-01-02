@@ -26,7 +26,7 @@
                 <a href="{{  route('article.details', $a->id_artikel)  }}">
                     <div class="min-w-[150px] md:max-w-[400px] flex-wrap bg-white rounded-xl shadow-md overflow-hidden ">
                         <div class="h-50 rounded-tl-lg rounded-tr-lg overflow-hidden">
-                            <img src="{{ $a->gambar_aktivitas }}" alt="subak terraces" class="w-full h-full object-cover" />
+                            <img src="{{ asset("storage/".$a->gambar_aktivitas) }}" alt="subak terraces" class="w-full h-full object-cover" />
                         </div>
 
                         <div class="mt-3 p-3">

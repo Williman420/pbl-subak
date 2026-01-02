@@ -16,6 +16,8 @@ class Booking extends Model
         'id_aktivitas',
         'id_pengunjung',
         'tanggal_booking',
+        'jam_mulai',
+        'jam_selesai',
         'jumlah_peserta',
         'status_booking',
         'total_harga',

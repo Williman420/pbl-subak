@@ -28,7 +28,7 @@
             Price: Rp {{ number_format($aktivitas->harga) }} <br>
         </div>
 
-        <button wire:click="submit"
+        <button
             {{ $aktivitas->slot < $jumlah_peserta ? 'disabled' : '' }}
             class="w-full bg-primary text-white py-2 rounded-xl disabled:bg-gray-400 disabled:cursor-not-allowed" wire:click="showModal = true">
             Book
@@ -39,7 +39,15 @@
     <div class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
         <div class="bg-white w-full max-w-md rounded-2xl shadow-lg p-6">
 
-            <h2 class="text-xl font-bold">Booking Confirmation</h2>
+            <span class="flex flex-row justify-between">
+                <h2 class="text-xl font-bold">Booking Confirmation</h2>
+                <button
+                    type="button"
+                    wire:click="$set('showModal', false)"
+                    class="text-gray-500 hover:text-gray-700 text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </span>
             <p class="text-sm text-gray-600 mt-1">
                 Review your booking details before proceeding to payment
             </p>

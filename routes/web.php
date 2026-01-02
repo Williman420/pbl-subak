@@ -84,3 +84,7 @@ Route::get('/booking/create/{aktivitas}', [BookingController::class, 'formBookin
 Route::get('/myBookingPage', [BookingController::class, 'showMyBooking'])
     ->middleware('auth:web')
     ->name('myBooking.showMyBooking');
+
+Route::post('/booking/{booking}/cancel', [BookingController::class, 'cancel'])
+    ->middleware('auth:web')
+    ->name('booking.cancel');

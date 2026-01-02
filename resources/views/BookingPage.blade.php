@@ -14,7 +14,6 @@
         <x-nav-bar />
     </header>
 
-    <!-- Main content fills empty space -->
     <main class="flex-1 flex items-center justify-center">
         <livewire:create-booking :aktivitas="$aktivitas" />
     </main>

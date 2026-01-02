@@ -12,6 +12,9 @@ return new class extends Migration {
             $table->unsignedInteger('id_pengunjung');
             $table->unsignedInteger('id_aktivitas');
             $table->date('tanggal_booking');
+            $table->date('tanggal_kegiatan')->nullable();
+            $table->time('jam_mulai')->nullable();
+            $table->time('jam_selesai')->nullable();
             $table->integer('jumlah_peserta');
             $table->enum('status_booking', ['pending', 'confirmed', 'cancelled']);
             $table->decimal('total_harga', 10, 0);
