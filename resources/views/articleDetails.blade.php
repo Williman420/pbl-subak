@@ -35,8 +35,9 @@
 
 
             <div class="prose prose-gray max-w-none leading-relaxed text-justify">
-                {{ $article->isi_artikel }}
+                {!! nl2br(e($article->isi_artikel)) !!}
             </div>
+
 
         </div>
     </main>

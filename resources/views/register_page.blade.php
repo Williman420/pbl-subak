@@ -46,20 +46,22 @@
 
             <div>
                 <label class="block text-sm font-medium">Password</label>
-                <input type="password" name="password" placeholder="********"
+                <input type="password" name="password" placeholder="********" minlength="6"
                     class="w-full mt-1 p-2 border rounded-lg focus:ring-2 focus:ring-green-500" required>
             </div>
 
             <div>
                 <label class="block text-sm font-medium">Confirm Password</label>
-                <input type="password" name="password_confirmation" placeholder="********"
+                <input type="password" name="password_confirmation" placeholder="********" minlength="6"
                     class="w-full mt-1 p-2 border rounded-lg focus:ring-2 focus:ring-green-500" required>
             </div>
 
             <div>
                 <label class="block text-sm font-medium">Phone Number</label>
-                <input type="text" name="no_tlp" placeholder="enter your phone number"
-                    class="w-full mt-1 p-2 border rounded-lg focus:ring-2 focus:ring-green-500" required>
+                <input
+                    type="text" name="no_tlp" placeholder="enter your phone number"
+                    class="w-full mt-1 p-2 border rounded-lg focus:ring-2 focus:ring-green-500" required maxlength="12" minlength="10"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '');">
             </div>
 
             <button type="submit"

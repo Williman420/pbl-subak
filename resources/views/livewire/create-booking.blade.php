@@ -11,11 +11,17 @@
     @endif
 
     <form wire:submit.prevent="submit" class="space-y-4">
-        <p class="text-sm text-gray-600 mt-1">
-            Date
-        </p>
+        <span class="flex flex-row gap-2 mt-1">
+
+            <p class="text-sm text-gray-600 mt-1">
+                Available date: 
+            </p>
+            <p class="text-sm text-gray-600 mt-1">{{ date('d', strtotime($aktivitas->start_date))}} - {{date('d F Y', strtotime($aktivitas->end_date))}}</p>
+        </span>
         <input type="date" required
             wire:model="tanggal_booking"
+            min="{{ \Carbon\Carbon::parse($aktivitas->start_date)->format('Y-m-d') }}"
+            max="{{ \Carbon\Carbon::parse($aktivitas->end_date)->format('Y-m-d') }}"
             class="w-full border p-2 rounded">
         <p class="text-sm text-gray-600 mt-1">
             Number of Participants
