@@ -54,7 +54,6 @@
                             <p class="text-xs text-gray-500 mt-1">{{ date('d', strtotime($i->start_date))}} - {{date('d F Y', strtotime($i->end_date))}}</p>
                             <div class="mt-3 flex items-center justify-between">
                                 <span class="text-xs text-gray-600"> {{ $i->status_ketersediaan }}</span>
-                                <button class="text-xs px-2 py-1 border rounded text-[#0b6abf]">Book</button>
                             </div>
                         </div>
                     </div>

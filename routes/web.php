@@ -14,13 +14,13 @@ use App\Http\Controllers\HomeViewController;
 
 
 
-// REGISTER
-Route::post('register', function () {
-    return view('register_page');
-});
+// // REGISTER
+// Route::post('register', function () {
+//     return view('register_page');
+// });
 
-Route::get('register', [NewRegisteredUserController::class, 'create'])->name('register');
-Route::post('register', [NewRegisteredUserController::class, 'store']);
+// Route::get('register', [NewRegisteredUserController::class, 'create'])->name('register');
+// Route::post('register', [NewRegisteredUserController::class, 'store']);
 
 Route::post('register_success', function () {
     return view('register_success');
@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 Route::get('/pengunjung', [PengunjungController::class, 'index'])->name('pengunjung.index');
-Route::get('/pengunjung/create', [PengunjungController::class, 'create'])->name('pengunjung.create');
+Route::get('/register', [PengunjungController::class, 'createPage'])->name('pengunjung.createPage');
 Route::post('/pengunjung', [PengunjungController::class, 'store'])->name('pengunjung.store');
 Route::get('/pengunjung/{id}', [PengunjungController::class, 'show'])->name('pengunjung.show');
 Route::delete('/pengunjung/{id}', [PengunjungController::class, 'destroy'])->name('pengunjung.destroy');
@@ -55,7 +55,7 @@ Route::post('/login', [PengunjungController::class, 'login'])->name('login.submi
 
 // STATIC PAGES
 Route::get('/aboutSubak', fn() => view('about'));
-// Route::get('/experience', fn() => view('experience'));
+
 Route::get('/articles', fn() => view('articles'));
 Route::get('/booking_list', fn() => view('booking_list'));
 

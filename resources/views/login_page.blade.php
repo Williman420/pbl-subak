@@ -69,7 +69,7 @@
 
         <div class="mt-6 text-sm text-gray-700">
             Don’t have an account?
-            <a href="{{ route('register') }}" class="text-blue-600 hover:underline">
+            <a href="{{ route('pengunjung.createPage') }}" class="text-blue-600 hover:underline">
                 Create one
             </a>
         </div>

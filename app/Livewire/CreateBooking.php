@@ -30,25 +30,6 @@ class CreateBooking extends Component
         $this->total_harga = $this->aktivitas->harga * $this->jumlah_peserta;
     }
 
-    // public function submit()
-    // {
-    // $aktivitas = Aktivitas::where('id_aktivitas', $this->aktivitas->id_aktivitas)
-    //     $user = Auth::user();
-    //     $booking = Booking::create(attributes: [
-    //         'id_aktivitas' => $this->aktivitas->id_aktivitas,
-    //         'id_pengunjung' => $user->id_pengunjung,
-    //         'tanggal_booking' => $this->tanggal_booking,
-    //         'jumlah_peserta' => $this->jumlah_peserta,
-    //         'status_booking' => 'pending',
-    //         'total_harga' => $this->total_harga,
-    //     ]);
-    //     $aktivitas->decrement('slots', $this->jumlah_peserta);
-    //     $this->selectedBooking = $booking;
-    //     $this->showModal = true;
-    //     session()->flash('success', 'Booking saved, Continue to WA to confirm verify your payment!');
-    // }
-
-
     public function submit()
     {
         $this->validate([
@@ -61,17 +42,16 @@ class CreateBooking extends Component
 
                 $user = Auth::user();
 
-                // 🔒 Lock aktivitas row
+
                 $aktivitas = Aktivitas::where('id_aktivitas', $this->aktivitas->id_aktivitas)
                     ->lockForUpdate()
                     ->first();
 
-                // ❌ Not enough slots
+
                 if ($aktivitas->slot < $this->jumlah_peserta) {
                     throw new \Exception('Slot tidak mencukupi.');
                 }
 
-                // ✅ Create booking
                 $booking = Booking::create([
                     'id_aktivitas'    => $aktivitas->id_aktivitas,
                     'id_pengunjung'   => $user->id_pengunjung,
@@ -81,10 +61,8 @@ class CreateBooking extends Component
                     'total_harga'     => $this->total_harga,
                 ]);
 
-                // 🔽 Decrease slots safely
                 $aktivitas->decrement('slot', $this->jumlah_peserta);
 
-                // Livewire UI updates
                 $this->selectedBooking = $booking;
                 $this->showModal = true;
             });

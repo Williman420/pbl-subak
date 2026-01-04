@@ -15,9 +15,10 @@ class PengunjungController extends Controller
         return view('home.homeData', compact('pengunjung'));
     }
 
-    public function create()
+    public function createPage()
     {
-        return view('pengunjung.create');
+        return view('register_page');
+        // return view('pengunjung.create');
     }
 
     public function store(Request $request)

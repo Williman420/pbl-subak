@@ -65,7 +65,7 @@
                 </div>
                 @else
                 <a href="{{ route('login') }}" class="hover:text-primary">Login</a>
-                <a href="{{ route('register') }}" class="hover:text-primary">Register</a>
+                <a href="{{ route('pengunjung.createPage') }}" class="hover:text-primary">Register</a>
                 @endauth
             </button>
 
