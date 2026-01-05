@@ -43,13 +43,7 @@ class BookingForm
                     ->seconds(false)
                     ->nullable(),
 
-                Select::make('status_booking')
-                    ->options([
-                        'pending' => 'Pending',
-                        'confirmed' => 'Confirmed',
-                        'cancelled' => 'Cancelled',
-                    ])
-                    ->required(),
+
             ]);
     }
 }

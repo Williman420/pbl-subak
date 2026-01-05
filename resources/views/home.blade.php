@@ -33,67 +33,82 @@
 
             </div>
 
-            <div class="flex gap-5 overflow-x-auto pb-2 snap-x snap-mandatory">
 
+            <div class="grid place-items-center mx-auto grid-cols-1 md:grid-cols-5 gap-2 overflow-x-auto pb-2">
 
                 @foreach($experiences as $i)
-
                 <a href="{{  route('experience.details', $i->id_aktivitas)  }}">
-                    <div class="min-w-[200px] max-w-[250px] snap-start bg-white rounded-xl shadow-sm overflow-hidden ">
+
+                    <div class="min-w-[200px] md:min-w-[250px] snap-start bg-white rounded-xl shadow-sm overflow-hidden ">
                         <div class="h-50 md:h-60 overflow-hidden">
                             <img src="{{ asset("storage/".$i->gambar_aktivitas) }}" alt="{{ $i->nama_aktivitas }}" class="w-full h-full object-cover" />
                         </div>
                         <div class="p-3">
                             <div class=" flex flex-row justify-between">
-                                <h3 class="text-sm font-medium">{{$i->nama_aktivitas}}</h3>
+                                <h3 class="text-sm font-medium">{{ $i->nama_aktivitas }}</h3>
                                 <p class="text-xs mt-1 
-                             {{ $i->slot < 5 ? 'text-orange-500' : 'text-gray-500' }}">
+                                {{ $i->slot < 5 ? 'text-orange-500' : 'text-gray-500' }}">
                                     {{ $i->slot }} Slots left
                                 </p>
                             </div>
                             <p class="text-xs text-gray-500 mt-1">{{ date('d', strtotime($i->start_date))}} - {{date('d F Y', strtotime($i->end_date))}}</p>
                             <div class="mt-3 flex items-center justify-between">
-                                <span class="text-xs text-gray-600"> {{ $i->status_ketersediaan }}</span>
+                                <span class="text-xs text-gray-600"> {{ $i->status_ketersediaan}}</span>
+                                <button class="text-xs px-2 py-1 border rounded text-[#0b6abf]">Book</button>
                             </div>
                         </div>
                     </div>
                 </a>
                 @endforeach
             </div>
-        </div>
+
+            <div class="mt-10 pb-8">
+                <div class="flex flex-row justify-between mb-5">
+                    <h2 class="font-semibold text-base md:text-xl mb-4">Articles</h2>
+                    <a href="/articles" class="mt-3 text-sm md:text-sm  text-gray-600">See more</a>
+
+                </div>
+
+                <div class="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory">
+
+                    @foreach($artikels as $a)
+                    <a href="{{ route('article.details', $a->id_artikel) }}"
+                        class="snap-start min-w-[220px] md:min-w-0">
+
+                        <div class="bg-white rounded-2xl shadow-sm overflow-hidden
+                                flex flex-col h-full hover:-translate-y-1
+                                hover:shadow-md transition">
 
 
-        <div class="mt-10 pb-8">
-            <div class="flex flex-row justify-between mb-5">
-                <h2 class="font-semibold text-base md:text-xl mb-4">Articles</h2>
-                <a href="/articles" class="mt-3 text-sm md:text-sm  text-gray-600">See more</a>
+                            <div class="h-44 overflow-hidden">
+                                <img src="{{ asset('storage/'.$a->gambar_aktivitas) }}"
+                                    alt="{{ $a->judul }}"
+                                    class="w-full h-full object-cover" />
+                            </div>
 
-            </div>
 
-            <div class="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory">
+                            <div class="p-4 flex flex-col h-full">
+                                <time class="text-xs text-gray-500">
+                                    {{ $a->tanggal_pembuatan }}
+                                </time>
 
-                @foreach($artikels as $a)
-                <a href="{{  route('article.details', $a->id_artikel)  }}">
-                    <div class="min-w-[150px] md:max-w-[400px] flex-wrap bg-white rounded-xl shadow-md overflow-hidden ">
-                        <div class="h-50 rounded-tl-lg rounded-tr-lg overflow-hidden">
-                            <img src="{{ asset("storage/".$a->gambar_aktivitas) }}" alt="subak terraces" class="w-full h-full object-cover" />
-                        </div>
+                                <h3 class="mt-1 text-sm font-semibold line-clamp-2">
+                                    {{ $a->judul }}
+                                </h3>
 
-                        <div class="mt-3 p-3">
-                            <time class="text-xs text-gray-500">{{ $a->tanggal_pembuatan }}</time>
-                            <h3 class="mt-1 text-sm font-semibold">{{ $a->judul }}</h3>
-                            <p class="text-xs text-gray-600 mt-2 line-clamp-3">
-                                {{ Str::limit($a->isi_artikel, 100) }}
-                            </p>
-                            <div class="mt-3 flex justify-between items-center text-xs text-primary font-medium">
-                                Read more
+                                <p class="mt-2 text-xs text-gray-600 line-clamp-3">
+                                    {{ Str::limit($a->isi_artikel, 100) }}
+                                </p>
+
+                                <span class="mt-auto pt-4 text-xs font-medium text-primary">
+                                    Read more →
+                                </span>
                             </div>
                         </div>
-                    </div>
-                </a>
-                @endforeach
+                    </a>
+                    @endforeach
+                </div>
             </div>
-        </div>
     </section>
 
 </body>

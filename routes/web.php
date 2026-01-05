@@ -56,8 +56,8 @@ Route::post('/login', [PengunjungController::class, 'login'])->name('login.submi
 // STATIC PAGES
 Route::get('/aboutSubak', fn() => view('about'));
 
-Route::get('/articles', fn() => view('articles'));
-Route::get('/booking_list', fn() => view('booking_list'));
+// Route::get('/articles', fn() => view('articles'));
+// Route::get('/booking_list', fn() => view('booking_list'));
 
 
 Route::get(

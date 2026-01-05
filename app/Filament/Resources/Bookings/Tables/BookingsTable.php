@@ -7,6 +7,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class BookingsTable
@@ -15,31 +16,62 @@ class BookingsTable
     {
         return $table
             ->columns([
-                TextColumn::make('id_booking'),
-                TextColumn::make('id_aktivitas'),
-                TextColumn::make('id_pengunjung'),
-                TextColumn::make('tanggal_booking'),
-                TextColumn::make('jumlah_peserta'),
-                TextColumn::make('total_harga'),
-
+                TextColumn::make('id_booking')
+                    ->sortable()
+                    ->searchable()
+                    ->Label("ID Booking"),
+                TextColumn::make('id_aktivitas')
+                    ->sortable()
+                    ->searchable()
+                    ->Label("ID Aktivitas"),
+                TextColumn::make('id_pengunjung')
+                    ->sortable()
+                    ->searchable()
+                    ->Label("ID Pengunjung"),
+                TextColumn::make('tanggal_booking')
+                    ->sortable()
+                    ->searchable()
+                    ->Label("Tanggal Booking"),
+                TextColumn::make('created_at')
+                    ->sortable()
+                    ->searchable()
+                    ->Label("Created At"),
+                TextColumn::make('jumlah_peserta')
+                    ->sortable()
+                    ->searchable()
+                    ->Label("Jumlah Peserta"),
+                TextColumn::make('total_harga')
+                    ->sortable()
+                    ->searchable()
+                    ->Label("Total Harga"),
                 TextColumn::make('jam_mulai')
-                    ->label('Jam Mulai')
-                    ->time('H:i'),
+                    ->time('H:i')
+                    ->sortable()
+                    ->searchable()
+                    ->Label("Jam Mulai"),
 
                 TextColumn::make('jam_selesai')
-                    ->label('Jam Selesai')
-                    ->time('H:i'),
-                textColumn::make('jumlah_peserta'),
+                    ->time('H:i')
+                    ->sortable()
+                    ->searchable()
+                    ->Label("Jam Selesai"),
                 SelectColumn::make('status_booking')
                     ->options([
                         'pending' => 'pending',
                         'confirmed' => 'confirmed',
                         'cancelled' => 'cancelled',
-                    ]),
-                textColumn::make('total_harga'),
+                    ])
+                    ->sortable()
+                    ->searchable()
+                    ->Label("Status Booking"),
             ])
             ->filters([
-                //
+                SelectFilter::make('status_booking')
+                    ->options([
+                        'pending'   => 'Pending',
+                        'confirmed' => 'Confirmed',
+                        'cancelled' => 'Cancelled',
+                    ]),
             ])
             ->recordActions([
                 EditAction::make(),
