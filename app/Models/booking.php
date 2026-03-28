@@ -10,13 +10,25 @@ class Booking extends Model
 
     protected $primaryKey = 'id_booking'; // primary key name
 
-    public $timestamps = false; // because your table has no created_at / updated_at
-
+    public $timestamps = true;
+    const UPDATED_AT = null;
     protected $fillable = [
+        'id_aktivitas',
         'id_pengunjung',
         'tanggal_booking',
+        'jam_mulai',
+        'jam_selesai',
         'jumlah_peserta',
         'status_booking',
         'total_harga',
     ];
+
+    public function aktivitas()
+    {
+        return $this->belongsTo(aktivitas::class, 'id_aktivitas', 'id_aktivitas');
+    }
+    public function pengunjung()
+    {
+        return $this->belongsTo(Pengunjung::class, 'id_pengunjung', 'id_pengunjung');
+    }
 }

@@ -13,36 +13,73 @@
 
     <main class="flex-col grow">
         <section>
-        <div class="w-full h-20 md:h-30 bg-primary text-center p-4">
-            <h1 class="text-2xl md:text-3xl font-bold text-white">Articles</h1>
-            <p class="mt-2 text-sm md:text-xl text-white">Discover stories, tips, and cultural insights about the Subak irrigation system and authentic Balinese farming experiences.</p>
-        </div>
-    </section>
+            <div class="w-full h-20 md:h-30 bg-primary text-center p-4">
+                <h1 class="text-2xl md:text-3xl font-bold text-white">Articles</h1>
+                <p class="mt-2 text-md md:text-xl text-white">Discover stories, tips, and cultural insights about the Subak irrigation system and authentic Balinese farming experiences.</p>
+            </div>
+        </section>
 
 
-    <section class="mx-auto mt-10 mb-10 px-20 ">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-10 overflow-x-auto pb-2 ">
-            {{-- article card --}}
-            @foreach($artikel as $a)
-            <article class="min-w-[150px] md:max-w-[400px] flex-wrap bg-white rounded-xl shadow-md overflow-hidden ">
-                <div class="h-50 rounded-tl-lg rounded-tr-lg overflow-hidden">
-                    <img src="{{ $a->gambar_aktivitas }}" alt="subak terraces" class="w-full h-full object-cover" />
-                </div>
+        <section class="max-w-7xl mx-auto mt-10 mb-16 px-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                @foreach($artikel as $a)
+                <a href="{{ route('article.details', $a->id_artikel) }}" class="h-full">
+                    <div
+                        class="
+            group
+            bg-white rounded-xl overflow-hidden
+            shadow-md
+            flex flex-col h-full
+            transition duration-300 ease-out
+            hover:-translate-y-1
+            hover:shadow-lg
+        ">
 
-                <div class="mt-3 p-3">
-                    <time class="text-xs text-gray-500">{{ $a->tanggal_pembuatan }}</time>
-                    <h3 class="mt-1 text-sm font-semibold">{{ $a->judul }}</h3>
-                    <p class="text-xs text-gray-600 mt-2 line-clamp-3">
-                        {{ Str::limit($a->isi_artikel, 100) }}
-                    </p>
-                    <div class="mt-3 flex justify-between items-center">
-                        <a href="#" class="text-xs text-[#0b6abf] font-medium">Read more</a>
+                        <!-- Gambar -->
+                        <div class="h-48 overflow-hidden">
+                            <img
+                                src="{{ asset('storage/'.$a->gambar_aktivitas) }}"
+                                alt="{{ $a->judul }}"
+                                class="
+                    w-full h-full object-cover
+                    transition duration-300
+                    group-hover:scale-105
+                " />
+                        </div>
+
+                        <!-- Konten -->
+                        <div class="p-4 flex flex-col h-full">
+                            <time class="text-xs text-gray-500">
+                                {{ $a->tanggal_pembuatan }}
+                            </time>
+
+                            <h3 class="mt-2 text-base font-semibold text-gray-900 line-clamp-2">
+                                {{ $a->judul }}
+                            </h3>
+
+                            <p class="mt-2 text-sm text-gray-600 line-clamp-3">
+                                {{ Str::limit($a->isi_artikel, 100) }}
+                            </p>
+
+                            <!-- Read more -->
+                            <span
+                                class="
+                    mt-auto pt-4
+                    text-sm font-medium text-primary
+                    transition
+                    group-hover:translate-x-1
+                ">
+                                Read more →
+                            </span>
+                        </div>
+
                     </div>
-                </div>
-            </article>
-            @endforeach
-        </div>
-    </section>
+                </a>
+
+                @endforeach
+            </div>
+        </section>
+
     </main>
 </body>
 

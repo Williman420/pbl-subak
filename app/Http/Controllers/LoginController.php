@@ -40,12 +40,13 @@ class LoginController extends Controller
     // 👇 HANDLE REGISTER SUBMISSION
     public function register(Request $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required', 'min:6', 'confirmed'],
-        ]
-    );
+        $request->validate(
+            [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'email', 'unique:users,email'],
+                'password' => ['required', 'min:6', 'confirmed'],
+            ]
+        );
 
         // Create user
         $pengunjung = Pengunjung::create([

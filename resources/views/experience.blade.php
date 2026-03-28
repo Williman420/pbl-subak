@@ -21,26 +21,30 @@
 
     <section class="mx-auto mt-10 mb-10 px-20 grow ">
         <div class="grid place-items-center mx-auto grid-cols-1 md:grid-cols-5 gap-2 overflow-x-auto pb-2">
+
             @foreach($experiences as $i)
-            <div class="min-w-[200px] md:min-w-[250px] snap-start bg-white rounded-xl shadow-sm overflow-hidden ">
-                <div class="h-50 md:h-60 overflow-hidden">
-                    <img src="{{ $i->gambar_aktivitas }}" alt="rice paddy" class="w-full h-full object-cover" />
-                </div>
-                <div class="p-3">
-                    <div class=" flex flex-row justify-between">
-                        <h3 class="text-sm font-medium">{{ $i->nama_aktivitas }}</h3>
-                        <p class="text-xs mt-1 
-                             {{ $i->slot < 15 ? 'text-orange-500' : 'text-gray-500' }}">
-                            {{ $i->slot }} Slots left
-                        </p>
+            <a href="{{  route('experience.details', $i->id_aktivitas)  }}">
+
+                <div class="min-w-[200px] md:min-w-[250px] snap-start bg-white rounded-xl shadow-sm overflow-hidden ">
+                    <div class="h-50 md:h-60 overflow-hidden">
+                        <img src="{{ asset("storage/".$i->gambar_aktivitas) }}" alt="{{ $i->nama_aktivitas }}" class="w-full h-full object-cover" />
                     </div>
-                    <p class="text-xs text-gray-500 mt-1">{{ date('d', strtotime($i->start_date))}} - {{date('d F Y', strtotime($i->end_date))}}</p>
-                    <div class="mt-3 flex items-center justify-between">
-                        <span class="text-xs text-gray-600"> {{ $i->status_ketersediaan}}</span>
-                        <button class="text-xs px-2 py-1 border rounded text-[#0b6abf]">Book</button>
+                    <div class="p-3">
+                        <div class=" flex flex-row justify-between">
+                            <h3 class="text-sm font-medium">{{ $i->nama_aktivitas }}</h3>
+                            <p class="text-xs mt-1 
+                                {{ $i->slot < 5 ? 'text-orange-500' : 'text-gray-500' }}">
+                                {{ $i->slot }} Slots left
+                            </p>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">{{ date('d', strtotime($i->start_date))}} - {{date('d F Y', strtotime($i->end_date))}}</p>
+                        <div class="mt-3 flex items-center justify-between">
+                            <span class="text-xs text-gray-600"> {{ $i->status_ketersediaan}}</span>
+                            <button class="text-xs px-2 py-1 border rounded text-[#0b6abf]">Book</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
             @endforeach
         </div>
     </section>
